@@ -1,8 +1,9 @@
 import { contractAddresses, abi } from "../constants"
 import { useEffect, useState } from "react"
 import { useMoralis, useWeb3Contract } from "react-moralis"
-import { useNotification } from "web3uikit"
+import { useNotification, Button } from "web3uikit"
 import { ethers } from "ethers"
+
 export default function MintNFT() {
     const { Moralis, isWeb3Enabled, chainId: chainIdHex } = useMoralis()
     const chainId = parseInt(chainIdHex)
@@ -89,10 +90,10 @@ export default function MintNFT() {
     }
 
     return (
-        <div>
+        <div className="flex flex-col justify-center items-center">
             {NFTAddress ? (
                 <>
-                    <button
+                    <Button
                         onClick={async () =>
                             await requestNFT({
                                 onSuccess: handleSuccess,
@@ -100,19 +101,30 @@ export default function MintNFT() {
                             })
                         }
                         disabled={isLoading || isFetching}
-                    >
-                        {isLoading || isFetching ? (
-                            <div className="animate-spin spinner-border h-8 w-8 border-b-2 rounded-full"></div>
-                        ) : (
-                            "Mint NFT"
-                        )}
-                    </button>
+                        text={
+                            isLoading || isFetching ? (
+                                <div className="animate-spin spinner-border h-8 w-8 border-b-2 rounded-full"></div>
+                            ) : (
+                                "MINT NFT"
+                            )
+                        }
+                        color="green"
+                        theme="colored"
+                    />
+                    <br />
                     <div>
-                        Mint Fee: {ethers.utils.formatUnits(mintFee, "ether")}{" "}
-                        ETH
+                        Mint Fee:{" "}
+                        <b>
+                            {ethers.utils.formatUnits(mintFee, "ether")}
+                            ETH
+                        </b>
                     </div>
+
                     <div>
-                        There are : {totalNFT - mintedNFT} / {totalNFT}
+                        There are :{" "}
+                        <b>
+                            {totalNFT - mintedNFT} / {totalNFT}
+                        </b>
                     </div>
                 </>
             ) : (

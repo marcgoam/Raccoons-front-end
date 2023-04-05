@@ -3,6 +3,7 @@ import styles from "../styles/Home.module.css"
 import Header from "../components/Header"
 import MintNFT from "../components/MintNFT"
 import { useMoralis } from "react-moralis"
+// import background from "../public/preview.png"
 
 const supportedChains = ["31337", "11155111", "5"]
 
@@ -10,7 +11,7 @@ export default function Home() {
     const { isWeb3Enabled, chainId } = useMoralis()
 
     return (
-        <div className={styles.container}>
+        <div>
             <Head>
                 <title>Create Next App</title>
                 <meta
@@ -22,7 +23,22 @@ export default function Home() {
             <Header />
             <br />
             <br />
-            <MintNFT />
+
+            <br></br>
+
+            <div className="flex flex-row justify-between">
+                <img
+                    src="/preview.gif"
+                    alt="My Image"
+                    className="rounded-full h-40 ml-40"
+                />
+                <MintNFT />
+                <img
+                    src="/preview.gif"
+                    alt="My Image"
+                    className="rounded-full h-40 mr-40"
+                />
+            </div>
         </div>
     )
 }
