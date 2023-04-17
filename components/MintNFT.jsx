@@ -90,7 +90,7 @@ export default function MintNFT() {
     }
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center rounded-lg border-dotted border-4 border-lime-300 p-28 ">
             {NFTAddress ? (
                 <>
                     <Button
